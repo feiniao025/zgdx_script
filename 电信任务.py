@@ -160,6 +160,7 @@ def sign_tasks(user):
         for t in tasks.get('data', {}).get('biz', {}).get('adItems', []):
             if t.get('taskState') in ['0', '1'] and t.get('contentOne') == '18':
                 api_req('https://wappark.189.cn/jt-sign/webSign/polymerize', json={"para": encrypt_rsa({"phone": user['phoneNbr'], "jobId": t['taskId']})}, headers={'sign': sso['sign']}, log_msg=f"[任务] {m} {t['title']}")
+                time.sleep(2)
 
     # 喂食
     for i in range(10):
